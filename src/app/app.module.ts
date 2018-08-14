@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { LoginModule } from '../modules/login/login.module'
+import { LoginModule } from '../modules/login/login.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { LoginModule } from '../modules/login/login.module'
   ],
   imports: [
     BrowserModule,
-    LoginModule
+    LoginModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
