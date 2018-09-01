@@ -1,3 +1,7 @@
+## Note
+
+This work was dedicated to a postgraduate in web development, made at PUC-MG
+
 # PortfolioCms
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
