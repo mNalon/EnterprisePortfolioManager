@@ -13,6 +13,13 @@ const unauthorizedResponse = new HttpErrorResponse({
   statusText: 'Unauthorized'
 });
 
+const fakeUser = {
+  id: 123,
+  name: 'Fake',
+  userName: 'fake',
+  role: 'admin'
+};
+
 describe('UserService', () => {
   beforeEach(() => {
     const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
@@ -35,11 +42,6 @@ describe('UserService', () => {
     const userService = TestBed.get(UserService);
     const userName = 'fake';
     const userPassword = 'fake';
-    const fakeUser = {
-      name: 'Fake',
-      userName: 'fake',
-      role: 'admin'
-    };
 
     TestBed.get(HttpClient).post.and.returnValue(from(new Promise(res => res(fakeUser))));
     userService.login(userName, userPassword).subscribe((user: User) => {
@@ -47,14 +49,32 @@ describe('UserService', () => {
     });
   });
 
-  it('should return an unauthorized error', () => {
+  it('should return an unauthorized error when password is wrong', () => {
     const userService = TestBed.get(UserService);
     const userName = 'fake';
     const userPassword = 'fakeWrong';
 
     TestBed.get(HttpClient).post
            .and.returnValue(from(new Promise((res, rej) => rej(unauthorizedResponse))));
-    userService.login(userName, userPassword).subscribe((error: ResponseError) => {
+    userService.login(userName, userPassword).subscribe(null, (error: ResponseError) => {
+      expect(error.message).toBe(HTTP_UNAUTHORIZED.message);
+      expect(error.code).toBe(HTTP_UNAUTHORIZED.code);
+    });
+  });
+
+  it('when user has a logged session it should obtain the user info', () => {
+    const userService = TestBed.get(UserService);
+    TestBed.get(HttpClient).get.and.returnValue(from(new Promise(res => res(fakeUser))));
+    userService.userSessionInfo().subscribe((user: User) => {
+      expect(user).toBe(fakeUser);
+    });
+  });
+
+  it('should return an unauthorized error when user is not logged', () => {
+    const userService = TestBed.get(UserService);
+    TestBed.get(HttpClient).get
+           .and.returnValue(from(new Promise((res, rej) => rej(unauthorizedResponse))));
+    userService.userSessionInfo().subscribe(null, (error: ResponseError) => {
       expect(error.message).toBe(HTTP_UNAUTHORIZED.message);
       expect(error.code).toBe(HTTP_UNAUTHORIZED.code);
     });

@@ -21,6 +21,13 @@ export class UserService {
                .pipe(catchError(this.handleError));
   }
 
+  userSessionInfo() {
+    return this.httpClient
+               .get<User>(`${this.host}/info`)
+               .pipe(catchError(this.handleError));
+  }
+
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
