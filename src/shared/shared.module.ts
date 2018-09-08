@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,7 +9,14 @@ import { UserService } from './services/user.service';
     CommonModule,
     HttpClientModule
   ],
-  declarations: [ UserService ],
-  exports: [ UserService ]
+  declarations: [  ],
+  exports: [  ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [ UserService ]
+    };
+  }
+}

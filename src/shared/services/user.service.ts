@@ -5,19 +5,20 @@ import { catchError } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { HTTP_UNAUTHORIZED, HTTP_UNEXPECTED, CLIENT_CONNECTION } from '../constants/error-messages';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  host = 'config.host';
+  host = environment.hostAPI;
 
   constructor(private httpClient: HttpClient) { }
 
   login(name: string, password: string) {
     return this.httpClient
-               .post<User>(`${this.host}/login`, {name: name, password: password})
+               .post<User>(`${this.host}/login`, {name, password})
                .pipe(catchError(this.handleError));
   }
 
