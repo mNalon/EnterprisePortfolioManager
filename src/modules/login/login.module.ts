@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SharedModule } from '../../shared/shared.module';
-import { UserService } from '../../shared/services/user.service';
 
 @NgModule({
   imports: [
