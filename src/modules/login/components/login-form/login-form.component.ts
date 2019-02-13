@@ -19,9 +19,12 @@ export class LoginFormComponent implements OnInit {
   }
 
   login() {
-    this.userService.login(this.userName, this.userPassword).subscribe(null, error => {
-      this.errorMessage = error.message;
-    });
+    this.userService
+      .login(this.userName, this.userPassword)
+      .subscribe(
+        user => { this.userService.loadUserInfo(user); },
+        error => { this.errorMessage = error.message; }
+      );
   }
 
   disableLogin() {

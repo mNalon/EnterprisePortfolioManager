@@ -79,6 +79,4 @@ describe('UserService', () => {
       expect(error.code).toBe(HTTP_UNAUTHORIZED.code);
     });
   });
-
-
 });

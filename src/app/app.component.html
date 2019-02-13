@@ -1,3 +1,7 @@
-<app-login-page>
-  
-</app-login-page>
+<div *ngIf="loggedUser; else login">
+  Olá {{loggedUser.name}}
+</div>
+
+<ng-template #login>
+  <app-login-page></app-login-page>
+</ng-template>

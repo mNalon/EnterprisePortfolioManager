@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { HTTP_UNAUTHORIZED, HTTP_UNEXPECTED, CLIENT_CONNECTION } from '../constants/error-messages';
 import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import { environment } from '../../environments/environment';
 export class UserService {
 
   host = environment.hostAPI;
+
+  userLoaded: Subject<User> = new Subject<User>();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,6 +29,10 @@ export class UserService {
     return this.httpClient
                .get<User>(`${this.host}/info`)
                .pipe(catchError(this.handleError));
+  }
+
+  loadUserInfo(user: User) {
+    this.userLoaded.next(user);
   }
 
 
