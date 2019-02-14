@@ -21,13 +21,13 @@ export class UserService {
 
   login(name: string, password: string) {
     return this.httpClient
-               .post<User>(`${this.host}/login`, {name, password})
+               .post<User>(`${this.host}/user/login`, {name, password})
                .pipe(catchError(this.handleError));
   }
 
   userSessionInfo() {
     return this.httpClient
-               .get<User>(`${this.host}/info`)
+               .get<User>(`${this.host}/user/info`)
                .pipe(catchError(this.handleError));
   }
 
