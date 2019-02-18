@@ -17,7 +17,8 @@ const fakeUser = {
   id: 123,
   name: 'Fake',
   userName: 'fake',
-  role: 'admin'
+  role: 'admin',
+  email: 'fake@domain.com'
 };
 
 describe('UserService', () => {
