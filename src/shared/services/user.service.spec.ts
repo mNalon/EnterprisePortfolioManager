@@ -14,10 +14,10 @@ const unauthorizedResponse = new HttpErrorResponse({
 });
 
 const fakeUser = {
-  id: 123,
+  _id: 123,
   name: 'Fake',
   userName: 'fake',
-  role: 'admin',
+  role: { _id: 123, name: 'fake', actions: [ {_id: 134, name: 'fake', slug: 'fake'} ] },
   email: 'fake@domain.com'
 };
 

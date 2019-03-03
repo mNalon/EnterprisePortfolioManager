@@ -19,15 +19,15 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(name: string, password: string) {
+  login(userName: string, password: string) {
     return this.httpClient
-               .post<User>(`${this.host}/user/login`, {name, password})
+               .post<User>(`${this.host}/user/login`, {userName, password})
                .pipe(catchError(this.handleError));
   }
 
   userSessionInfo() {
     return this.httpClient
-               .get<User>(`${this.host}/user/info`)
+               .get<User>(`${this.host}/user/me`)
                .pipe(catchError(this.handleError));
   }
 
