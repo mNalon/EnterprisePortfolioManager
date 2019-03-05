@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../../shared/models/user';
 
 const AVAILABLE_MENU_ITEMS = [{
-    data: {title: 'Usuários'},
+    title: 'Usuários',
     path: '/users',
     actionRequired: 'view_users'
   }, {
-    data: {title: 'Projetos'},
+    title: 'Projetos',
     path: '/projects',
     actionRequired: ''
   }];
