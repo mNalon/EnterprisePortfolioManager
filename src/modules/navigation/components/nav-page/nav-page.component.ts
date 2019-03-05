@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../../shared/models/user';
 
 @Component({
@@ -7,7 +7,7 @@ import { User } from '../../../../shared/models/user';
   styleUrls: ['./nav-page.component.css']
 })
 export class NavPageComponent implements OnInit {
-  user: User;
+  @Input() user: User;
 
   constructor() { }
 

@@ -1,6 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../../shared/models/user';
 
+const AVAILABLE_MENU_ITEMS = [{
+    data: {title: 'Usuários'},
+    path: '/users',
+    actionRequired: 'view_users'
+  }, {
+    data: {title: 'Projetos'},
+    path: '/projects',
+    actionRequired: ''
+  }];
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -8,15 +18,7 @@ import { User } from '../../../../shared/models/user';
 })
 export class NavBarComponent implements OnInit {
 
-  private menuItems = [{
-    data: {title: 'Usuários'},
-    path: '/users',
-    availableFor: ['admin']
-  }, {
-    data: {title: 'Projetos'},
-    path: '/projects',
-    availableFor: ['admin']
-  }];
+  private menuItems = [];
 
   @Input() user: User;
 
@@ -24,6 +26,8 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.menuItems = AVAILABLE_MENU_ITEMS.filter(menu =>
+        !!this.user.role.actions.find(action => menu.actionRequired === action.slug));
   }
 
   getAvailableMenus() {
