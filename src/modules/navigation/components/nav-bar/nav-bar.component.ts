@@ -25,6 +25,8 @@ export class NavBarComponent implements OnInit {
   constructor() {
   }
 
+  isNavbarCollapsed = true;
+
   ngOnInit() {
     this.menuItems = AVAILABLE_MENU_ITEMS.filter(menu =>
         !!this.user.role.actions.find(action => menu.actionRequired === action.slug));

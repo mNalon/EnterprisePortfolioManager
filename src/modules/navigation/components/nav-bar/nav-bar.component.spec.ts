@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule, Routes } from '@angular/router';
-import { APP_BASE_HREF } from '@angular/common';
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { NavBarComponent } from './nav-bar.component';
 
@@ -10,11 +13,15 @@ describe('NavBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot(
-        [],
-      )],
+      imports: [
+        CommonModule,
+        BrowserModule,
+        NgbModule,
+        RouterModule.forRoot([])
+      ],
       providers: [{provide: APP_BASE_HREF, useValue: '/'}],
-      declarations: [ NavBarComponent ]
+      declarations: [ NavBarComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -22,6 +29,7 @@ describe('NavBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
+    component.isNavbarCollapsed = true;
     component.user = {
         _id: 123,
         name: 'bla',

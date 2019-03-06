@@ -5,15 +5,18 @@ import { APP_BASE_HREF } from '@angular/common';
 import { NavPageComponent } from './nav-page.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 describe('NavPageComponent', () => {
     let component: NavPageComponent;
     let fixture: ComponentFixture<NavPageComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [RouterModule.forRoot(
-                [],
-            )],
+            imports: [
+              RouterModule.forRoot([]),
+              NgbModule
+            ],
             providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
             declarations: [NavPageComponent, NavBarComponent]
         })
