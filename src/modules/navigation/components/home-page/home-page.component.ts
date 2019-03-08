@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../../../shared/models/user';
 
+import { UserService } from '../../../../shared/services/user.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -9,21 +11,12 @@ import { User } from '../../../../shared/models/user';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  user: User = {
-      _id: 123,
-      name: 'FakeUser',
-      email: 'fakeEmail',
-      userName: 'fake',
-      role: {
-        _id: 213,
-        name: 'Fakezão',
-        actions: []
-      }
-    };
+  loggedUser: User = null;
 
   ngOnInit() {
+    this.userService.userSessionInfo().subscribe(user => { this.loggedUser = user; });
   }
 
 }
