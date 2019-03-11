@@ -31,6 +31,12 @@ export class UserService {
                .pipe(catchError(this.handleError));
   }
 
+  userList() {
+    return this.httpClient
+               .get<Array<User>>(`${this.host}/user/list`)
+               .pipe(catchError(this.handleError));
+  }
+
   loadUserInfo(user: User) {
     this.userLoaded.next(user);
   }
