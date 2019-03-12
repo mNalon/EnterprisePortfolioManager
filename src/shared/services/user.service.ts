@@ -37,6 +37,12 @@ export class UserService {
                .pipe(catchError(this.handleError));
   }
 
+  deleteUser(id) {
+    return this.httpClient
+               .delete<User>(`${this.host}/user/${id}`)
+               .pipe(catchError(this.handleError));
+  }
+
   loadUserInfo(user: User) {
     this.userLoaded.next(user);
   }

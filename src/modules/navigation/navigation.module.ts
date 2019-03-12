@@ -12,11 +12,15 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavPageComponent } from './components/nav-page/nav-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 
+
 import { UserPageComponent } from '../user/components/user-page/user-page.component';
+import { UserFormPageComponent } from '../user/components/user-form-page/user-form-page.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomePageComponent },
     { path: 'users', component: UserPageComponent },
+    { path: 'users/add', component: UserFormPageComponent },
+    { path: 'users/edit/:id', component: UserFormPageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

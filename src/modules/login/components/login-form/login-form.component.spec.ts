@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { from, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 import { LoginFormComponent } from './login-form.component';
