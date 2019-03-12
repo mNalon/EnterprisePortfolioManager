@@ -34,7 +34,7 @@ describe('LoginFormComponent', () => {
   });
 
   it('should disable login button while userName and userPassword are empty', () => {
-    const loginButton = fixture.nativeElement.querySelector('#login-form input[type=submit]');
+    const loginButton = fixture.nativeElement.querySelector('#loginForm input[type=submit]');
     component.userName = null;
     component.userPassword = null;
     expect(loginButton.disabled).toBe(true);
