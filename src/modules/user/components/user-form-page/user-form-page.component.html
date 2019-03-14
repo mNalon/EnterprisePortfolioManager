@@ -5,23 +5,38 @@
 
   <form>
     <div class="form-group">
+      <label for="inputName">Nome</label>
+      <input type="text" class="form-control" id="inputName" />
+    </div>
+    <div class="form-group">
+      <label for="inputUserName">Nome de usuário</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputUserName"
+        placeholder="Ex: myNickName"
+      />
+    </div>
+    <div class="form-group">
       <label for="inputEmail">Email</label>
       <input
         type="email"
         class="form-control"
         id="inputEmail"
-        aria-describedby="emailHelp"
-        placeholder="Digite o email aqui"
+        placeholder="Ex: myemail@mail.com"
       />
     </div>
+
+    <div class="form-group">
+        <label for="inputRole">Tipo de usuário</label>
+        <select class="form-control" id="inputRole">
+          <option *ngFor="let role of availableRoles">{{role.name}}</option>
+        </select>
+      </div>
+
     <div class="form-group">
       <label for="inputPassword">Senha</label>
-      <input
-        type="password"
-        class="form-control"
-        id="inputPassword"
-        placeholder="Senha"
-      />
+      <input type="password" class="form-control" id="inputPassword" />
     </div>
     <button type="submit" class="btn btn-primary">Criar</button>
   </form>

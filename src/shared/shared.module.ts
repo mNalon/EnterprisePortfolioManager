@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { UserService } from './services/user.service';
+import { RoleService } from './services/role.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ UserService ]
+      providers: [ UserService, RoleService ]
     };
   }
 }
