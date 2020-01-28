@@ -19,3 +19,8 @@ export const CLIENT_CONNECTION: ResponseError = {
   message: 'Problemas com a sua conexão',
   code: 'CLIENT_CONNECTION'
 };
+
+export const HTTP_BAD_REQUEST: ResponseError = {
+  message: 'Dados não preenchidos corretamente',
+  code: 'HTTP_BAD_REQUEST'
+};

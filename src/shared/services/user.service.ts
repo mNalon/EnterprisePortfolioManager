@@ -42,6 +42,12 @@ export class UserService {
                .pipe(catchError(handleError));
   }
 
+  createUser(user: User) {
+    return this.httpClient
+               .post<User>(`${this.host}/user`, user)
+               .pipe(catchError(handleError));
+  }
+
   loadUserInfo(user: User) {
     this.userLoaded.next(user);
   }

@@ -3,10 +3,16 @@
     <h3>Adicionar usuário</h3>
   </header>
 
-  <form>
+  <form #form="ngForm" (ngSubmit)="user._id ? editUser($event) : addUser($event)">
     <div class="form-group">
       <label for="inputName">Nome</label>
-      <input type="text" class="form-control" id="inputName" />
+      <input 
+        type="text" 
+        class="form-control" 
+        id="inputName" 
+        name="inputName" 
+        [(ngModel)]="user.name"
+        required />
     </div>
     <div class="form-group">
       <label for="inputUserName">Nome de usuário</label>
@@ -14,7 +20,10 @@
         type="text"
         class="form-control"
         id="inputUserName"
+        name="inputUserName"
         placeholder="Ex: myNickName"
+        [(ngModel)]="user.userName"
+        required
       />
     </div>
     <div class="form-group">
@@ -23,25 +32,33 @@
         type="email"
         class="form-control"
         id="inputEmail"
+        name="inputEmail"
         placeholder="Ex: myemail@mail.com"
+        [(ngModel)]="user.email"
+        required
       />
     </div>
 
     <div class="form-group">
         <label for="inputRole">Tipo de usuário</label>
-        <select class="form-control" id="inputRole">
-          <option *ngFor="let role of availableRoles">{{role.name}}</option>
+        <select class="form-control" id="inputRole" name="inputRole" [(ngModel)]="user.role">
+          <option *ngFor="let role of availableRoles" [ngValue]="role._id" >{{role.name}}</option>
         </select>
       </div>
 
     <div class="form-group">
       <label for="inputPassword">Senha</label>
-      <input type="password" class="form-control" id="inputPassword" />
+      <input 
+        type="password" 
+        class="form-control" 
+        id="inputPassword"
+        name="inputPassword"
+        [(ngModel)]="user.password" />
     </div>
     <button 
-      class="btn btn-primary" 
-      (click)="user._id ? editUser($event) : addUser($event)">
+      class="btn btn-primary" >
         {{user._id ? 'Editar' : 'Criar'}}
     </button>
+    <p class="text-danger">{{errorMessage}}</p>
   </form>
 </section>

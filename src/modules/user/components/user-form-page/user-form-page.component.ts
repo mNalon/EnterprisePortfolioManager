@@ -8,11 +8,11 @@ import { UserService } from '../../../../shared/services/user.service';
 import { RoleService } from '../../../../shared/services/role.service';
 
 const EMPTY_USER = {
-  _id: null,
   name: '',
   userName: '',
   role: null,
-  email: ''
+  email: '',
+  password: ''
 };
 
 @Component({
@@ -26,8 +26,12 @@ export class UserFormPageComponent implements OnInit {
 
   user: User;
 
-  constructor(private roleService: RoleService) {
-    this.user = EMPTY_USER;
+  errorMessage: String;
+
+  constructor(private roleService: RoleService,
+    private userService: UserService,
+    private router: Router) {
+      this.user = EMPTY_USER;
   }
 
   ngOnInit() {
@@ -35,9 +39,13 @@ export class UserFormPageComponent implements OnInit {
   }
 
   addUser(event: any) {
-    console.log('Add user');
     event.preventDefault();
     event.stopPropagation();
+    this.userService.createUser(this.user)
+      .subscribe(
+        () => this.router.navigate(['/users']),
+        error => this.errorMessage = error.message
+      );
   }
 
   editUser(event: any) {
