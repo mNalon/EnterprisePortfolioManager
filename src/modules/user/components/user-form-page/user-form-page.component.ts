@@ -8,6 +8,7 @@ import { UserService } from '../../../../shared/services/user.service';
 import { RoleService } from '../../../../shared/services/role.service';
 
 const EMPTY_USER = {
+  _id: '',
   name: '',
   userName: '',
   role: null,
@@ -41,6 +42,7 @@ export class UserFormPageComponent implements OnInit {
   addUser(event: any) {
     event.preventDefault();
     event.stopPropagation();
+    delete this.user._id;
     this.userService.createUser(this.user)
       .subscribe(
         () => this.router.navigate(['/users']),
