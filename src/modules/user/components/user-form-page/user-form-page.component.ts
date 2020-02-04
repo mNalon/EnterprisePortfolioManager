@@ -31,12 +31,23 @@ export class UserFormPageComponent implements OnInit {
 
   constructor(private roleService: RoleService,
     private userService: UserService,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute) {
       this.user = EMPTY_USER;
   }
 
   ngOnInit() {
-    this.roleService.roleList().subscribe((roles => this.availableRoles = roles));
+    const userId = this.route.snapshot.paramMap.get('id')
+
+    this.roleService.roleList().subscribe(roles => this.availableRoles = roles);
+
+    if(userId){
+      this.userService.getUser(userId)
+        .subscribe(
+          user => this.user = user,
+          error => this.errorMessage = error.message
+        );
+    }
   }
 
   addUser(event: any) {
@@ -51,9 +62,13 @@ export class UserFormPageComponent implements OnInit {
   }
 
   editUser(event: any) {
-    console.log('Edit user');
     event.preventDefault();
     event.stopPropagation();
+    this.userService.editUser(this.user)
+      .subscribe(
+        () => this.router.navigate(['/users']),
+        error => this.errorMessage = error.message
+      );
   }
 
 }

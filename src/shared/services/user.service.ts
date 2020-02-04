@@ -36,6 +36,12 @@ export class UserService {
                .pipe(catchError(handleError));
   }
 
+  getUser(id) {
+    return this.httpClient
+               .get<User>(`${this.host}/user/${id}`)
+               .pipe(catchError(handleError));
+  }
+
   deleteUser(id) {
     return this.httpClient
                .delete<User>(`${this.host}/user/${id}`)
@@ -45,6 +51,12 @@ export class UserService {
   createUser(user: User) {
     return this.httpClient
                .post<User>(`${this.host}/user`, user)
+               .pipe(catchError(handleError));
+  }
+
+  editUser(user: User) {
+    return this.httpClient
+               .put<User>(`${this.host}/user/${user._id}`, user)
                .pipe(catchError(handleError));
   }
 
